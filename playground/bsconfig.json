@@ -1,0 +1,26 @@
+{
+  "name": "react-native-navigation-test-app",
+  "reason": {
+    "react-jsx": 2
+  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "bs-dependencies": [
+    "bs-react-native",
+    "../node_modules/reason-react",
+    "../../"
+  ],
+  "namespace": true,
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "refmt": 3,
+  "warnings": {
+    "number": "+R",
+    "error": "+R"
+  }
+}

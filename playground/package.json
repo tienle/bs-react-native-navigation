@@ -1,0 +1,20 @@
+{
+  "name": "TestApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start:ios": "react-native run-ios",
+    "start:android": "react-native run-android",
+    "dev:packager": "node node_modules/react-native/local-cli/cli.js start",
+    "dev:reason": "../node_modules/.bin/bsb -make-world -w"
+  },
+  "dependencies": {
+    "react": "16.2.0",
+    "react-native": "0.52.2",
+    "react-native-navigation": "APSL/react-native-navigation#rn52_android"
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "4.0.0",
+    "bs-react-native": "^0.5.0"
+  }
+}
