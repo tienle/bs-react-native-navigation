@@ -1,5 +1,4 @@
-import { app } from './lib/js/src/App.js'
-import React from 'react'
-import { AppRegistry } from 'react-native'
+import { registerScreens, startApplication } from './lib/js/src'
 
-AppRegistry.registerComponent('TestApp', () => app)
+registerScreens()
+startApplication()
