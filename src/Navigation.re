@@ -1,19 +1,61 @@
+type screenId;
+
 type screen;
 
-external asScreen : string => screen = "%identity";
+type drawer;
+
+type singleScreenAppConfig;
+
+type navigatorStyle;
+
+type navigatorButtons;
+
+external asScreenId : string => screenId = "%identity";
+
+external asScreen : Js.Dict.t('a) => screen = "%identity";
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
 external _registerComponent :
   (
-    string,
+    screenId,
     unit => ReasonReact.reactClass,
-    Js.Nullable.t(Js.t({.})),
+    /* TODO */
+    Js.Nullable.t('a),
     Js.Nullable.t(ReasonReact.reactClass)
   ) =>
   unit =
   "registerComponent";
 
-let registerComponent = (name, screen, ~store=?, ~provider=?, ()) =>
+let registerComponent = (~screenId, ~generator, ~store=?, ~provider=?, ()) =>
   Js.Nullable.(
-    _registerComponent(name, screen, from_opt(store), from_opt(provider))
+    _registerComponent(
+      screenId,
+      generator,
+      from_opt(store),
+      from_opt(provider)
+    )
   );
+
+[@bs.obj]
+external screen :
+  (
+    ~screen: screenId,
+    ~title: string=?,
+    ~navigatorStyle: navigatorStyle=?,
+    ~navigatorButtons: navigatorButtons=?,
+    unit
+  ) =>
+  screen =
+  "";
+
+[@bs.obj]
+external makeSingleScreenAppConfig :
+  (~screen: screen, ~drawer: drawer=?, unit) => singleScreenAppConfig =
+  "";
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external _startSingleScreenApp : singleScreenAppConfig => unit =
+  "startSingleScreenApp";
+
+let startSingleScreenApp = (~screen, ~drawer=?, ()) =>
+  _startSingleScreenApp(makeSingleScreenAppConfig(~screen, ~drawer?, ()));
