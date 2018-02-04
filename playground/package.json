@@ -14,7 +14,6 @@
     "react-native-navigation": "APSL/react-native-navigation#rn52_android"
   },
   "devDependencies": {
-    "babel-preset-react-native": "4.0.0",
-    "bs-react-native": "^0.5.0"
+    "babel-preset-react-native": "4.0.0"
   }
 }

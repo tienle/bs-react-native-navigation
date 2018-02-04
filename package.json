@@ -11,6 +11,7 @@
     "reason",
     "reasonml",
     "bucklescript",
+    "bindings",
     "react-native",
     "react-native-navigation"
   ],
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "bs-platform": "^2.1.0",
+    "bs-react-native": "^0.5.0",
     "reason-react": "^0.3.2"
   },
   "peerDependencies": {
