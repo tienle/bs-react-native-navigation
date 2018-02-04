@@ -1,0 +1,30 @@
+{
+  "name": "bs-react-native-navigation",
+  "version": "0.5.0",
+  "scripts": {
+    "dev": "bsb -make-world -w",
+    "build": "bsb -clean-world -make-world",
+    "test": "exit 0"
+  },
+  "license": "MIT",
+  "keywords": [
+    "reason",
+    "reasonml",
+    "bucklescript",
+    "react-native",
+    "react-native-navigation"
+  ],
+  "author": "Marcin Dziewulski",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobily/bs-react-native-navigation.git"
+  },
+  "devDependencies": {
+    "bs-platform": "^2.1.0",
+    "reason-react": "^0.3.2"
+  },
+  "peerDependencies": {
+    "react-native-navigation": "^1.1.x",
+    "reason-react": "^0.3.2"
+  }
+}
