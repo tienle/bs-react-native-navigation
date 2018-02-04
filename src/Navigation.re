@@ -10,8 +10,6 @@ type navigatorStyle;
 
 type navigatorButtons;
 
-external asScreenId : string => screenId = "%identity";
-
 external asScreen : Js.Dict.t('a) => screen = "%identity";
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
