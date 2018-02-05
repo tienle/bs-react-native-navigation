@@ -5,9 +5,9 @@
   - [x] `registerComponent`
   - [ ] `startTabBasedApp`
   - [x] `startSingleScreenApp`
-  - [ ] `showModal`
-  - [ ] `dismissModal`
-  - [ ] `dismissAllModals`
+  - [x] `showModal`
+  - [x] `dismissModal`
+  - [x] `dismissAllModals`
   - [ ] `showLightBox`
   - [ ] `dismissLightBox`
   - [ ] `handleDeepLink`
