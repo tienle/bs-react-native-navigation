@@ -41,8 +41,10 @@ let default =
     make(~navigator=props##navigator, [||])
   );
 
-[%bs.raw {|
-  $$default.navigatorStyle = {
-    navBarHidden: true
-  }
-|}];
+[%bs.raw
+  {|
+    $$default.navigatorStyle = {
+      navBarHidden: true
+    }
+  |}
+];
