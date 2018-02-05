@@ -20,7 +20,11 @@ let registerScreens = () => {
   ();
 };
 
-let startApplication = () => {
-  let initialScreen = Navigation.screen(~screen=screenId(Welcome), ());
-  Navigation.startSingleScreenApp(~screen=initialScreen, ());
-};
+let startApplication = () =>
+  Navigation.(
+    startSingleScreenApp(
+      ~screen=screen(~screen=screenId(Welcome), ()),
+      ~animationType=Animation.Fade,
+      ()
+    )
+  );
