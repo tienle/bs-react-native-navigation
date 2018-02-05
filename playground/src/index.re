@@ -1,30 +1,35 @@
 open BsReactNativeNavigation;
 
-type screenId =
-  | Welcome;
+[@bs.deriving jsConverter]
+type screenId = [ | `Drawer | `Welcome];
 
-let screenId = name =>
-  (
-    switch name {
-    | Welcome => "screen.welcome"
-    }
-  )
-  |> Navigation.asScreenId;
+let screenId = name => screenIdToJs(name) |> Navigation.asScreenId;
 
 let registerScreens = () => {
   Navigation.registerComponent(
-    ~screenId=screenId(Welcome),
+    ~screenId=screenId(`Welcome),
     ~generator=() => Screens.Welcome.default,
     ()
   );
-  ();
+  Navigation.registerComponent(
+    ~screenId=screenId(`Drawer),
+    ~generator=() => Screens.Drawer.default,
+    ()
+  );
 };
 
 let startApplication = () =>
   Navigation.(
     startSingleScreenApp(
-      ~screen=screen(~screen=screenId(Welcome), ()),
-      ~animationType=Animation.Fade,
+      ~screen=Screen.make(~screen=screenId(`Welcome), ()),
+      ~drawer=
+        drawer(
+          ~left=Drawer.make(~screen=screenId(`Drawer), ()),
+          ~_type=`TheSideBar,
+          ~animationType=`luvocracy,
+          ()
+        ),
+      ~animationType=`slideDown,
       ()
     )
   );
