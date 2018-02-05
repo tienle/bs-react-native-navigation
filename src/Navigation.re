@@ -2,11 +2,17 @@ type screenId;
 
 type singleScreenAppConfig;
 
+type showModalConfig;
+
+type dismissModalConfig;
+
 type drawer;
 
 type navigatorStyle;
 
 type navigatorButtons;
+
+type passProps = Js.t({.});
 
 external asScreenId : string => screenId = "%identity";
 
@@ -86,18 +92,6 @@ let registerComponent = (~screenId, ~generator, ~store=?, ~provider=?, ()) =>
   );
 
 [@bs.obj]
-external makeSingleScreenAppConfig :
-  (
-    ~screen: Screen.t,
-    ~drawer: drawer=?,
-    ~animationType: string=?,
-    ~passProps: Js.t({.})=?,
-    unit
-  ) =>
-  singleScreenAppConfig =
-  "";
-
-[@bs.obj]
 external _drawer :
   (
     ~left: Drawer.t=?,
@@ -140,6 +134,18 @@ let drawer =
 external _startSingleScreenApp : singleScreenAppConfig => unit =
   "startSingleScreenApp";
 
+[@bs.obj]
+external makeSingleScreenAppConfig :
+  (
+    ~screen: Screen.t,
+    ~drawer: drawer=?,
+    ~animationType: string=?,
+    ~passProps: passProps=?,
+    unit
+  ) =>
+  singleScreenAppConfig =
+  "";
+
 let startSingleScreenApp =
     (~screen, ~drawer=?, ~animationType=?, ~passProps=?, ()) =>
   _startSingleScreenApp(
@@ -149,6 +155,82 @@ let startSingleScreenApp =
       ~animationType=?
         Js.Option.map([@bs] (t => Animation.rootToJs(t)), animationType),
       ~passProps?,
+      ()
+    )
+  );
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external _showModal : showModalConfig => unit = "showModal";
+
+[@bs.obj]
+external makeShowModalConfig :
+  (
+    ~screen: screenId,
+    ~title: string=?,
+    ~animationType: string=?,
+    ~passProps: passProps=?,
+    ~navigatorStyle: navigatorStyle=?,
+    ~navigatorButtons: navigatorButtons=?,
+    unit
+  ) =>
+  showModalConfig =
+  "";
+
+let showModal =
+    (
+      ~screen,
+      ~title=?,
+      ~animationType=?,
+      ~passProps=?,
+      ~navigatorStyle=?,
+      ~navigatorButtons=?,
+      ()
+    ) =>
+  _showModal(
+    makeShowModalConfig(
+      ~screen,
+      ~title?,
+      ~animationType=?
+        Js.Option.map([@bs] (t => Animation.showModalToJs(t)), animationType),
+      ~passProps?,
+      ~navigatorStyle?,
+      ~navigatorButtons?,
+      ()
+    )
+  );
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external _dismissModal : dismissModalConfig => unit = "dismissModal";
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external _dismissAllModals : dismissModalConfig => unit = "dismissAllModals";
+
+[@bs.obj]
+external makeDismissModalConfig :
+  (~animationType: string=?, unit) => dismissModalConfig =
+  "";
+
+/* TODO: DRY */
+let dismissModal = (~animationType=?, ()) =>
+  _dismissModal(
+    makeDismissModalConfig(
+      ~animationType=?
+        Js.Option.map(
+          [@bs] (t => Animation.dismissModalToJs(t)),
+          animationType
+        ),
+      ()
+    )
+  );
+
+let dismissAllModals = (~animationType=?, ()) =>
+  _dismissAllModals(
+    makeDismissModalConfig(
+      ~animationType=?
+        Js.Option.map(
+          [@bs] (t => Animation.dismissModalToJs(t)),
+          animationType
+        ),
       ()
     )
   );
