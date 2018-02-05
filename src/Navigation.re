@@ -22,7 +22,7 @@ module Animation = {
     | `door
     | `parallax
     | `slide
-    | [@bs.as "slide-as-scale"] `slideAndScale
+    | [@bs.as "slide-and-scale"] `slideAndScale
     | `airbnb
     | `facebook
     | `luvocracy
