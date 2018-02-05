@@ -4,7 +4,7 @@
 
   - [x] `registerComponent`
   - [ ] `startTabBasedApp`
-  - [ ] `startSingleScreenApp`
+  - [x] `startSingleScreenApp`
   - [ ] `showModal`
   - [ ] `dismissModal`
   - [ ] `dismissAllModals`
