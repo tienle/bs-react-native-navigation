@@ -15,7 +15,13 @@ let styles =
             alignItems(Center),
             justifyContent(Center)
           ]),
-        "text": style([color("#fff")])
+        "text":
+          style([
+            color("#fff"),
+            fontSize(Float(32.)),
+            marginBottom(Pt(20.)),
+            fontWeight(`Bold)
+          ])
       }
     )
   );
@@ -27,8 +33,7 @@ let make = (~navigator, _children) => {
   render: _self =>
     <View style=styles##container>
       <Text style=styles##text> (stringToElement("Modal!")) </Text>
-      <TouchableOpacity
-        onPress=(_event => Navigation.dismissModal(~animationType=`none, ()))>
+      <TouchableOpacity onPress=(_event => Navigation.dismissModal())>
         <Text> (stringToElement("Dismiss Modal")) </Text>
       </TouchableOpacity>
     </View>

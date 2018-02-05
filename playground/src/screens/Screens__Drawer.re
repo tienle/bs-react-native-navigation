@@ -13,7 +13,13 @@ let styles =
             alignItems(Center),
             justifyContent(Center)
           ]),
-        "text": style([color("#fff")])
+        "text":
+          style([
+            color("#fff"),
+            fontSize(Float(32.)),
+            marginBottom(Pt(20.)),
+            fontWeight(`Bold)
+          ])
       }
     )
   );

@@ -17,7 +17,13 @@ let styles =
             alignItems(Center),
             justifyContent(Center)
           ]),
-        "text": style([color("#fff")])
+        "text":
+          style([
+            color("#fff"),
+            fontSize(Float(32.)),
+            marginBottom(Pt(20.)),
+            fontWeight(`Bold)
+          ])
       }
     )
   );
@@ -28,7 +34,7 @@ let make = (~navigator, _children) => {
   ...component,
   render: _self =>
     <View style=styles##container>
-      <Text style=styles##text> (stringToElement("Welcome!")) </Text>
+      <Text style=styles##text> (stringToElement("Hello!")) </Text>
       <TouchableOpacity
         onPress=(_event => Navigation.showModal(~screen=screenId(`Modal), ()))>
         <Text> (stringToElement("Open Modal")) </Text>

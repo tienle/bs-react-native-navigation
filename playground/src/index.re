@@ -27,7 +27,7 @@ let startApplication = () =>
       ~drawer=
         drawer(
           ~left=Drawer.make(~screen=screenId(`Drawer), ()),
-          ~animationType=`slideAndScale,
+          ~animationType=`parallax,
           ()
         ),
       ~animationType=`slideDown,
