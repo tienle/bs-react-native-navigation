@@ -1,9 +1,6 @@
 open BsReactNativeNavigation;
 
-[@bs.deriving jsConverter]
-type screenId = [ | `Drawer | `Welcome];
-
-let screenId = name => screenIdToJs(name) |> Navigation.asScreenId;
+open Internal;
 
 let registerScreens = () => {
   Navigation.registerComponent(
@@ -16,6 +13,11 @@ let registerScreens = () => {
     ~generator=() => Screens.Drawer.default,
     ()
   );
+  Navigation.registerComponent(
+    ~screenId=screenId(`Modal),
+    ~generator=() => Screens.Modal.default,
+    ()
+  );
 };
 
 let startApplication = () =>
@@ -25,8 +27,7 @@ let startApplication = () =>
       ~drawer=
         drawer(
           ~left=Drawer.make(~screen=screenId(`Drawer), ()),
-          ~_type=`TheSideBar,
-          ~animationType=`luvocracy,
+          ~animationType=`slideAndScale,
           ()
         ),
       ~animationType=`slideDown,

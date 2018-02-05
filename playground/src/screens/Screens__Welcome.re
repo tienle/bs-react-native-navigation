@@ -2,6 +2,10 @@ open ReasonReact;
 
 open BsReactNative;
 
+open BsReactNativeNavigation;
+
+open Internal;
+
 let styles =
   StyleSheet.create(
     Style.(
@@ -25,6 +29,10 @@ let make = (~navigator, _children) => {
   render: _self =>
     <View style=styles##container>
       <Text style=styles##text> (stringToElement("Welcome!")) </Text>
+      <TouchableOpacity
+        onPress=(_event => Navigation.showModal(~screen=screenId(`Modal), ()))>
+        <Text> (stringToElement("Open Modal")) </Text>
+      </TouchableOpacity>
     </View>
 };
 
