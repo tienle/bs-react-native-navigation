@@ -14,7 +14,7 @@ BuckleScript bindings for [`react-native-navigation`](https://wix.github.io/reac
 
 `src/index.re`
 
-```
+```reason
 open BsReactNativeNavigation;
 
 [@bs.deriving jsConverter]
@@ -55,7 +55,7 @@ let startApplication = () =>
 
 `index.js`
 
-```
+```js
 import { registerScreens, startApplication } from './lib/js/src'
 
 registerScreens()
