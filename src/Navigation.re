@@ -18,8 +18,6 @@ type navigatorButtons;
 
 type passProps = Js.t({.});
 
-type payload = Js.t({.});
-
 external asScreenId : string => screenId = "%identity";
 
 external asDeepLink : string => deepLink = "%identity";
@@ -71,7 +69,7 @@ module Drawer = {
       ~screen: screenId,
       ~disableOpenGesture: Js.boolean=?,
       ~fixedWidth: float=?,
-      ~passProps: Js.t({.})=?,
+      ~passProps: passProps=?,
       unit
     ) =>
     t =
@@ -263,7 +261,7 @@ external _handleDeepLink : handleDeepLinkConfig => unit = "handleDeepLink";
 
 [@bs.obj]
 external makeHandleDeepLinkConfig :
-  (~link: deepLink, ~payload: payload=?, unit) => handleDeepLinkConfig =
+  (~link: deepLink, ~payload: Js.t({.})=?, unit) => handleDeepLinkConfig =
   "";
 
 let handleDeepLink = (~link, ~payload=?, ()) =>
