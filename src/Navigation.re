@@ -91,6 +91,10 @@ let registerComponent = (~screenId, ~generator, ~store=?, ~provider=?, ()) =>
     )
   );
 
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external registerScreen : (screenId, unit => ReasonReact.reactClass) => unit =
+  "";
+
 [@bs.obj]
 external _drawer :
   (
