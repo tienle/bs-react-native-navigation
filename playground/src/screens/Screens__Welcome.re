@@ -6,6 +6,11 @@ open BsReactNativeNavigation;
 
 open Internal;
 
+type action =
+  | UpdateScreenId(string);
+
+type state = {id: string};
+
 let styles =
   StyleSheet.create(
     Style.(
@@ -28,11 +33,24 @@ let styles =
     )
   );
 
-let component = statelessComponent("Welcome");
+let component = reducerComponent("Welcome");
+
+let getCurrentlyVisibleScreenId = (_event, self) =>
+  Navigation.getCurrentlyVisibleScreenId()
+  |> Js.Promise.then_(screen => {
+       self.send(UpdateScreenId(screen##screenId));
+       Js.Promise.resolve();
+     })
+  |> ignore;
 
 let make = (~navigator, _children) => {
   ...component,
-  render: _self =>
+  initialState: () => {id: ""},
+  reducer: (action, _state) =>
+    switch action {
+    | UpdateScreenId(id) => Update({id: id})
+    },
+  render: self =>
     <View style=styles##container>
       <Text style=styles##text> (stringToElement("Hello!")) </Text>
       <TouchableOpacity
@@ -45,6 +63,10 @@ let make = (~navigator, _children) => {
         )>
         <Text> (stringToElement("Open LightBox")) </Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress=(self.handle(getCurrentlyVisibleScreenId))>
+        <Text> (stringToElement("Get currently visible `screenId`")) </Text>
+      </TouchableOpacity>
+      <Text> (stringToElement(self.state.id)) </Text>
     </View>
 };
 
