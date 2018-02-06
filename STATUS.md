@@ -8,7 +8,7 @@
   - [x] `showModal`
   - [x] `dismissModal`
   - [x] `dismissAllModals`
-  - [ ] `showLightBox`
+  - [x] `showLightBox`
   - [x] `dismissLightBox`
   - [ ] `handleDeepLink`
   - [x] `registerScreen`
