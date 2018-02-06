@@ -25,10 +25,12 @@ let startApplication = () =>
     startSingleScreenApp(
       ~screen=Screen.make(~screen=screenId(`Welcome), ()),
       ~drawer=
-        drawer(
-          ~left=Drawer.make(~screen=screenId(`Drawer), ()),
-          ~animationType=`parallax,
-          ()
+        Drawer.(
+          config(
+            ~left=make(~screen=screenId(`Drawer), ()),
+            ~animationType=`parallax,
+            ()
+          )
         ),
       ~animationType=`slideDown,
       ()

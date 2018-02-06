@@ -6,8 +6,6 @@ type showModalConfig;
 
 type dismissModalConfig;
 
-type drawer;
-
 type navigatorStyle;
 
 type navigatorButtons;
@@ -54,6 +52,7 @@ module Screen = {
 module Drawer = {
   type t;
   type style;
+  type config;
   [@bs.deriving jsConverter]
   type type_ = [ | `MMDrawer | `TheSideBar];
   [@bs.obj]
@@ -67,6 +66,43 @@ module Drawer = {
     ) =>
     t =
     "";
+  [@bs.obj]
+  external _config :
+    (
+      ~left: t=?,
+      ~right: t=?,
+      ~style: style=?,
+      ~_type: string=?,
+      ~animationType: string=?,
+      ~disableOpenGesture: Js.boolean=?,
+      unit
+    ) =>
+    config =
+    "";
+  let config =
+      (
+        ~left=?,
+        ~right=?,
+        ~style=?,
+        ~_type=?,
+        ~animationType=?,
+        ~disableOpenGesture=?,
+        ()
+      ) =>
+    _config(
+      ~left?,
+      ~right?,
+      ~style?,
+      ~_type=?Js.Option.map([@bs] (t => type_ToJs(t)), _type),
+      ~animationType=?
+        Js.Option.map([@bs] (t => Animation.drawerToJs(t)), animationType),
+      ~disableOpenGesture=?
+        Js.Option.map(
+          [@bs] (t => Js.Boolean.to_js_boolean(t)),
+          disableOpenGesture
+        ),
+      ()
+    );
 };
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
@@ -95,45 +131,6 @@ let registerComponent = (~screenId, ~generator, ~store=?, ~provider=?, ()) =>
 external registerScreen : (screenId, unit => ReasonReact.reactClass) => unit =
   "";
 
-[@bs.obj]
-external _drawer :
-  (
-    ~left: Drawer.t=?,
-    ~right: Drawer.t=?,
-    ~style: Drawer.style=?,
-    ~_type: string=?,
-    ~animationType: string=?,
-    ~disableOpenGesture: Js.boolean=?,
-    unit
-  ) =>
-  drawer =
-  "";
-
-let drawer =
-    (
-      ~left=?,
-      ~right=?,
-      ~style=?,
-      ~_type=?,
-      ~animationType=?,
-      ~disableOpenGesture=?,
-      ()
-    ) =>
-  _drawer(
-    ~left?,
-    ~right?,
-    ~style?,
-    ~_type=?Js.Option.map([@bs] (t => Drawer.type_ToJs(t)), _type),
-    ~animationType=?
-      Js.Option.map([@bs] (t => Animation.drawerToJs(t)), animationType),
-    ~disableOpenGesture=?
-      Js.Option.map(
-        [@bs] (t => Js.Boolean.to_js_boolean(t)),
-        disableOpenGesture
-      ),
-    ()
-  );
-
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
 external _startSingleScreenApp : singleScreenAppConfig => unit =
   "startSingleScreenApp";
@@ -142,7 +139,7 @@ external _startSingleScreenApp : singleScreenAppConfig => unit =
 external makeSingleScreenAppConfig :
   (
     ~screen: Screen.t,
-    ~drawer: drawer=?,
+    ~drawer: Drawer.config=?,
     ~animationType: string=?,
     ~passProps: passProps=?,
     unit
