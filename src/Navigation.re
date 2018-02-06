@@ -268,3 +268,9 @@ external makeHandleDeepLinkConfig :
 
 let handleDeepLink = (~link, ~payload=?, ()) =>
   _handleDeepLink(makeHandleDeepLinkConfig(~link, ~payload?, ()));
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+/* it's native screen ID */
+external getCurrentlyVisibleScreenId :
+  unit => Js.Promise.t({. "screenId": string}) =
+  "";

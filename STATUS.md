@@ -12,7 +12,7 @@
   - [x] `dismissLightBox`
   - [x] `handleDeepLink`
   - [x] `registerScreen`
-  - [ ] `getCurrentlyVisibleScreenId`  
+  - [x] `getCurrentlyVisibleScreenId`  
 
 ### Navigator (`Screen API`)
 
