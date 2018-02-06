@@ -44,11 +44,3 @@ let default =
   wrapReasonForJs(~component, props =>
     make(~navigator=props##navigator, [||])
   );
-
-[%bs.raw
-  {|
-    $$default.navigatorStyle = {
-      navBarHidden: true
-    }
-  |}
-];
