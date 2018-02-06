@@ -223,3 +223,7 @@ let dismissModal = (~animationType=?, ()) =>
 
 let dismissAllModals = (~animationType=?, ()) =>
   _dismissAllModals(commonDismissModalConfig(animationType));
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external dismissLightBox : unit => unit = "";
+
