@@ -210,27 +210,15 @@ external makeDismissModalConfig :
   (~animationType: string=?, unit) => dismissModalConfig =
   "";
 
-/* TODO: DRY */
-let dismissModal = (~animationType=?, ()) =>
-  _dismissModal(
-    makeDismissModalConfig(
-      ~animationType=?
-        Js.Option.map(
-          [@bs] (t => Animation.dismissModalToJs(t)),
-          animationType
-        ),
-      ()
-    )
+let commonDismissModalConfig = animationType =>
+  makeDismissModalConfig(
+    ~animationType=?
+      Js.Option.map([@bs] (t => Animation.dismissModalToJs(t)), animationType),
+    ()
   );
 
+let dismissModal = (~animationType=?, ()) =>
+  _dismissModal(commonDismissModalConfig(animationType));
+
 let dismissAllModals = (~animationType=?, ()) =>
-  _dismissAllModals(
-    makeDismissModalConfig(
-      ~animationType=?
-        Js.Option.map(
-          [@bs] (t => Animation.dismissModalToJs(t)),
-          animationType
-        ),
-      ()
-    )
-  );
+  _dismissAllModals(commonDismissModalConfig(animationType));
