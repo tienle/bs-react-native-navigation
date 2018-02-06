@@ -10,7 +10,7 @@
   - [x] `dismissAllModals`
   - [x] `showLightBox`
   - [x] `dismissLightBox`
-  - [ ] `handleDeepLink`
+  - [x] `handleDeepLink`
   - [x] `registerScreen`
   - [ ] `getCurrentlyVisibleScreenId`  
 

@@ -1,5 +1,7 @@
 type screenId;
 
+type deepLink;
+
 type singleScreenAppConfig;
 
 type showModalConfig;
@@ -8,13 +10,19 @@ type showLightBoxConfig;
 
 type dismissModalConfig;
 
+type handleDeepLinkConfig;
+
 type navigatorStyle;
 
 type navigatorButtons;
 
 type passProps = Js.t({.});
 
+type payload = Js.t({.});
+
 external asScreenId : string => screenId = "%identity";
+
+external asDeepLink : string => deepLink = "%identity";
 
 module Animation = {
   [@bs.deriving jsConverter]
@@ -249,3 +257,14 @@ external makeShowLightBoxConfig :
 
 let showLightBox = (~screen, ~passProps=?, ~style=?, ()) =>
   _showLightBox(makeShowLightBoxConfig(~screen, ~passProps?, ~style?, ()));
+
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external _handleDeepLink : handleDeepLinkConfig => unit = "handleDeepLink";
+
+[@bs.obj]
+external makeHandleDeepLinkConfig :
+  (~link: deepLink, ~payload: payload=?, unit) => handleDeepLinkConfig =
+  "";
+
+let handleDeepLink = (~link, ~payload=?, ()) =>
+  _handleDeepLink(makeHandleDeepLinkConfig(~link, ~payload?, ()));
