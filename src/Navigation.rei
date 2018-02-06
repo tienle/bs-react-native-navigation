@@ -2,8 +2,10 @@ type screenId;
 
 type deepLink;
 
+/* TODO: */
 type navigatorStyle;
 
+/* TODO: */
 type navigatorButtons;
 
 type passProps = Js.t({.});
@@ -43,6 +45,7 @@ module Screen: {
 
 module Drawer: {
   type t;
+  /* TODO: style */
   type style;
   type config;
   type type_ = [ | `MMDrawer | `TheSideBar];
@@ -68,6 +71,7 @@ module Drawer: {
     config;
 };
 
+/* TODO: style */
 module LightBox: {type style;};
 
 let registerComponent:
