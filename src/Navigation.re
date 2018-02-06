@@ -4,6 +4,8 @@ type singleScreenAppConfig;
 
 type showModalConfig;
 
+type showLightBoxConfig;
+
 type dismissModalConfig;
 
 type navigatorStyle;
@@ -103,6 +105,10 @@ module Drawer = {
         ),
       ()
     );
+};
+
+module LightBox = {
+  type style;
 };
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
@@ -227,3 +233,19 @@ let dismissAllModals = (~animationType=?, ()) =>
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
 external dismissLightBox : unit => unit = "";
 
+[@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
+external _showLightBox : showLightBoxConfig => unit = "showLightBox";
+
+[@bs.obj]
+external makeShowLightBoxConfig :
+  (
+    ~screen: screenId,
+    ~passProps: passProps=?,
+    ~style: LightBox.style=?,
+    unit
+  ) =>
+  showLightBoxConfig =
+  "";
+
+let showLightBox = (~screen, ~passProps=?, ~style=?, ()) =>
+  _showLightBox(makeShowLightBoxConfig(~screen, ~passProps?, ~style?, ()));
