@@ -18,6 +18,11 @@ let registerScreens = () => {
     ~generator=() => Screens.Modal.default,
     ()
   );
+  Navigation.registerComponent(
+    ~screenId=screenId(`LightBox),
+    ~generator=() => Screens.LightBox.default,
+    ()
+  );
 };
 
 let startApplication = () =>

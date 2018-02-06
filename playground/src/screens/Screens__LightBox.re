@@ -4,16 +4,15 @@ open BsReactNative;
 
 open BsReactNativeNavigation;
 
-open Internal;
-
 let styles =
   StyleSheet.create(
     Style.(
       {
         "container":
           style([
-            flex(1.),
-            backgroundColor("#2579FB"),
+            width(Pt(300.)),
+            height(Pt(400.)),
+            backgroundColor("#FF3E9D"),
             alignItems(Center),
             justifyContent(Center)
           ]),
@@ -28,22 +27,15 @@ let styles =
     )
   );
 
-let component = statelessComponent("Welcome");
+let component = statelessComponent("LightBox");
 
 let make = (~navigator, _children) => {
   ...component,
   render: _self =>
     <View style=styles##container>
-      <Text style=styles##text> (stringToElement("Hello!")) </Text>
-      <TouchableOpacity
-        onPress=(_event => Navigation.showModal(~screen=screenId(`Modal), ()))>
-        <Text> (stringToElement("Open Modal")) </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress=(
-          _event => Navigation.showLightBox(~screen=screenId(`LightBox), ())
-        )>
-        <Text> (stringToElement("Open LightBox")) </Text>
+      <Text style=styles##text> (stringToElement("LightBox!")) </Text>
+      <TouchableOpacity onPress=(_event => Navigation.dismissLightBox())>
+        <Text> (stringToElement("Dismiss LightBox")) </Text>
       </TouchableOpacity>
     </View>
 };
