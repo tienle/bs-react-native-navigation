@@ -84,7 +84,7 @@ open BsReactNative;
 
 open BsReactNativeNavigation;
 
-let component = reducerComponent("Welcome");
+let component = statelessComponent("Welcome");
 
 let make = (~navigator, _children) => {
   ...component,
