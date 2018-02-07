@@ -19,24 +19,39 @@ open BsReactNativeNavigation;
 
 type screenId =
   | Drawer
-  | Welcome
-  | Modal
-  | LightBox;
+  | Welcome;
 
-let screenIdToJs = screenId =>
-  switch screenId {
-  | Drawer => "screen.drawer"
-  | Welcome => "screen.welcome"
-  | Modal => "screen.modal"
-  | LightBox => "screen.lightbox"
-  };
+let screenId = screenId =>
+  (
+    switch screenId {
+    | Drawer => "screen.drawer"
+    | Welcome => "screen.welcome"
+    }
+  )
+  |> Navigation.asScreenId;
 
-let screenId = name => screenIdToJs(name) |> Navigation.asScreenId;
+let registerScreens = () =>
+  [
+    (Welcome, Screens.Welcome.default),
+    (Drawer, Screens.Drawer.default),
+  ]
+  |> List.iter(((screen, component)) =>
+       Navigation.registerComponent(
+         ~screenId=screenId(screen),
+         ~generator=() => component,
+         ()
+       )
+     );
 
 let startApplication = () =>
   Navigation.(
     startSingleScreenApp(
-      ~screen=Screen.make(~screen=screenId(Welcome), ()),
+      ~screen=
+        Screen.make(
+          ~screen=screenId(Welcome),
+          ~title="Playground / TestApp",
+          ()
+        ),
       ~drawer=
         Drawer.(
           config(
@@ -58,6 +73,38 @@ import { registerScreens, startApplication } from './lib/js/src'
 
 registerScreens()
 startApplication()
+```
+
+`Welcome.re` (component)
+
+```reason
+open ReasonReact;
+
+open BsReactNative;
+
+open BsReactNativeNavigation;
+
+let component = reducerComponent("Welcome");
+
+let make = (~navigator, _children) => {
+  ...component,
+  render: _self =>
+    /* whatever */
+};
+
+let default = Utils.nativeScreen(~component, ~make);
+
+Utils.setNavigatorStyle(
+  ~nativeScreen=default,
+  ~navigatorStyle=
+    Navigator.Style.(
+      create([
+        navBarTextColor("#fff"),
+        navBarNoBorder(true),
+        navBarBackgroundColor("#2575E6")
+      ])
+    )
+);
 ```
 
 ### Status
