@@ -2,28 +2,20 @@ open BsReactNativeNavigation;
 
 open Internal;
 
-let registerScreens = () => {
-  Navigation.registerComponent(
-    ~screenId=screenId(Welcome),
-    ~generator=() => Screens.Welcome.default,
-    ()
-  );
-  Navigation.registerComponent(
-    ~screenId=screenId(Drawer),
-    ~generator=() => Screens.Drawer.default,
-    ()
-  );
-  Navigation.registerComponent(
-    ~screenId=screenId(Modal),
-    ~generator=() => Screens.Modal.default,
-    ()
-  );
-  Navigation.registerComponent(
-    ~screenId=screenId(LightBox),
-    ~generator=() => Screens.LightBox.default,
-    ()
-  );
-};
+let registerScreens = () =>
+  [
+    (Welcome, Screens.Welcome.default),
+    (Drawer, Screens.Drawer.default),
+    (Modal, Screens.Modal.default),
+    (LightBox, Screens.LightBox.default)
+  ]
+  |> List.iter(((screen, component)) =>
+       Navigation.registerComponent(
+         ~screenId=screenId(screen),
+         ~generator=() => component,
+         ()
+       )
+     );
 
 let startApplication = () =>
   Navigation.(
