@@ -124,3 +124,5 @@ let showLightBox:
   unit;
 
 let handleDeepLink: (~link: deepLink, ~payload: Js.t({.})=?, unit) => unit;
+
+let getCurrentlyVisibleScreenId: unit => Js.Promise.t({. "screenId": string});
