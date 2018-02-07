@@ -42,5 +42,5 @@
 
 ### Other
 
-  - [ ] styling the navigator
+  - [x] styling the navigator
   - [ ] adding buttons to the navigator
