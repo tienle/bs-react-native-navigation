@@ -40,7 +40,4 @@ let make = (~navigator, _children) => {
     </View>
 };
 
-let default =
-  wrapReasonForJs(~component, props =>
-    make(~navigator=props##navigator, [||])
-  );
+let default = Utils.nativeScreen(~component, ~make);

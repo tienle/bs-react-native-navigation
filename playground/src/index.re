@@ -28,7 +28,12 @@ let registerScreens = () => {
 let startApplication = () =>
   Navigation.(
     startSingleScreenApp(
-      ~screen=Screen.make(~screen=screenId(Welcome), ()),
+      ~screen=
+        Screen.make(
+          ~screen=screenId(Welcome),
+          ~title="Playground / TestApp",
+          ()
+        ),
       ~drawer=
         Drawer.(
           config(

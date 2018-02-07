@@ -70,15 +70,16 @@ let make = (~navigator, _children) => {
     </View>
 };
 
-let default =
-  wrapReasonForJs(~component, props =>
-    make(~navigator=props##navigator, [||])
-  );
+let default = Utils.nativeScreen(~component, ~make);
 
-[%bs.raw
-  {|
-    $$default.navigatorStyle = {
-      navBarHidden: true
-    }
-  |}
-];
+Utils.setNavigatorStyle(
+  ~nativeScreen=default,
+  ~navigatorStyle=
+    Navigator.Style.(
+      create([
+        navBarTextColor("#fff"),
+        navBarNoBorder(true),
+        navBarBackgroundColor("#2575E6")
+      ])
+    )
+);
