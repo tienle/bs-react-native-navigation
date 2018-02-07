@@ -15,19 +15,25 @@ external asScreenId : string => screenId = "%identity";
 external asDeepLink : string => deepLink = "%identity";
 
 module Animation: {
-  type root = [ | `fade | `none | `slideDown];
-  type showModal = [ | `none | `slideUp];
-  type dismissModal = [ | `none | `slideDown];
-  type drawer = [
-    | `airbnb
-    | `door
-    | `facebook
-    | `luvocracy
-    | `parallax
-    | `slide
-    | `slideAndScale
-    | `wunderList
-  ];
+  type root =
+    | Fade
+    | None
+    | SlideDown;
+  type showModal =
+    | None
+    | SlideUp;
+  type dismissModal =
+    | None
+    | SlideDown;
+  type drawer =
+    | Door
+    | Parallax
+    | Slide
+    | SlideAndScale
+    | AirBnb
+    | Facebook
+    | Luvocracy
+    | Wunderlist;
 };
 
 module Screen: {
@@ -48,7 +54,9 @@ module Drawer: {
   /* TODO: style */
   type style;
   type config;
-  type type_ = [ | `MMDrawer | `TheSideBar];
+  type type_ =
+    | MMDrawer
+    | TheSideBar;
   let make:
     (
       ~screen: screenId,

@@ -54,12 +54,12 @@ let make = (~navigator, _children) => {
     <View style=styles##container>
       <Text style=styles##text> (stringToElement("Hello!")) </Text>
       <TouchableOpacity
-        onPress=(_event => Navigation.showModal(~screen=screenId(`Modal), ()))>
+        onPress=(_event => Navigation.showModal(~screen=screenId(Modal), ()))>
         <Text> (stringToElement("Open Modal")) </Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress=(
-          _event => Navigation.showLightBox(~screen=screenId(`LightBox), ())
+          _event => Navigation.showLightBox(~screen=screenId(LightBox), ())
         )>
         <Text> (stringToElement("Open LightBox")) </Text>
       </TouchableOpacity>

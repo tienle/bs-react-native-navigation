@@ -17,37 +17,35 @@ BuckleScript bindings for [`react-native-navigation`](https://wix.github.io/reac
 ```reason
 open BsReactNativeNavigation;
 
-[@bs.deriving jsConverter]
-type screenId = [ | `Drawer | `Welcome ];
+type screenId =
+  | Drawer
+  | Welcome
+  | Modal
+  | LightBox;
+
+let screenIdToJs = screenId =>
+  switch screenId {
+  | Drawer => "screen.drawer"
+  | Welcome => "screen.welcome"
+  | Modal => "screen.modal"
+  | LightBox => "screen.lightbox"
+  };
 
 let screenId = name => screenIdToJs(name) |> Navigation.asScreenId;
-
-let registerScreens = () => {
-  Navigation.registerComponent(
-    ~screenId=screenId(`Welcome),
-    ~generator=() => Screens.Welcome.default,
-    ()
-  );
-  Navigation.registerComponent(
-    ~screenId=screenId(`Drawer),
-    ~generator=() => Screens.Drawer.default,
-    ()
-  );
-};
 
 let startApplication = () =>
   Navigation.(
     startSingleScreenApp(
-      ~screen=Screen.make(~screen=screenId(`Welcome), ()),
+      ~screen=Screen.make(~screen=screenId(Welcome), ()),
       ~drawer=
         Drawer.(
           config(
-            ~left=make(~screen=screenId(`Drawer), ()),
-            ~animationType=`parallax,
+            ~left=make(~screen=screenId(Drawer), ()),
+            ~animationType=Animation.Parallax,
             ()
           )
         ),
-      ~animationType=`slideDown,
+      ~animationType=Animation.SlideDown,
       ()
     )
   );

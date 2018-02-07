@@ -23,23 +23,52 @@ external asScreenId : string => screenId = "%identity";
 external asDeepLink : string => deepLink = "%identity";
 
 module Animation = {
-  [@bs.deriving jsConverter]
-  type root = [ | `none | [@bs.as "slide-down"] `slideDown | `fade];
-  [@bs.deriving jsConverter]
-  type showModal = [ | `none | [@bs.as "slide-up"] `slideUp];
-  [@bs.deriving jsConverter]
-  type dismissModal = [ | `none | [@bs.as "slide-down"] `slideDown];
-  [@bs.deriving jsConverter]
-  type drawer = [
-    | `door
-    | `parallax
-    | `slide
-    | [@bs.as "slide-and-scale"] `slideAndScale
-    | `airbnb
-    | `facebook
-    | `luvocracy
-    | [@bs.as "wunder-list"] `wunderList
-  ];
+  type root =
+    | Fade
+    | None
+    | SlideDown;
+  let rootToJs = (animation: root) =>
+    switch animation {
+    | Fade => "fade"
+    | None => "none"
+    | SlideDown => "slide-down"
+    };
+  type showModal =
+    | None
+    | SlideUp;
+  let showModalToJs = (animation: showModal) =>
+    switch animation {
+    | None => "none"
+    | SlideUp => "slide-up"
+    };
+  type dismissModal =
+    | None
+    | SlideDown;
+  let dismissModalToJs = (animation: dismissModal) =>
+    switch animation {
+    | None => "none"
+    | SlideDown => "slide-down"
+    };
+  type drawer =
+    | Door
+    | Parallax
+    | Slide
+    | SlideAndScale
+    | AirBnb
+    | Facebook
+    | Luvocracy
+    | Wunderlist;
+  let drawerToJs = (animation: drawer) =>
+    switch animation {
+    | Door => "door"
+    | Parallax => "parallax"
+    | Slide => "slide"
+    | SlideAndScale => "slide-and-scale"
+    | AirBnb => "airbnb"
+    | Facebook => "facebook"
+    | Luvocracy => "luvocracy"
+    | Wunderlist => "wunder-list"
+    };
 };
 
 module Screen = {
@@ -62,7 +91,14 @@ module Drawer = {
   type style;
   type config;
   [@bs.deriving jsConverter]
-  type type_ = [ | `MMDrawer | `TheSideBar];
+  type type_ =
+    | MMDrawer
+    | TheSideBar;
+  let type_ToJs = type_ =>
+    switch type_ {
+    | MMDrawer => "MMDrawer"
+    | TheSideBar => "TheSideBar"
+    };
   [@bs.obj]
   external make :
     (

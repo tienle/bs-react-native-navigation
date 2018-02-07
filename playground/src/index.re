@@ -4,22 +4,22 @@ open Internal;
 
 let registerScreens = () => {
   Navigation.registerComponent(
-    ~screenId=screenId(`Welcome),
+    ~screenId=screenId(Welcome),
     ~generator=() => Screens.Welcome.default,
     ()
   );
   Navigation.registerComponent(
-    ~screenId=screenId(`Drawer),
+    ~screenId=screenId(Drawer),
     ~generator=() => Screens.Drawer.default,
     ()
   );
   Navigation.registerComponent(
-    ~screenId=screenId(`Modal),
+    ~screenId=screenId(Modal),
     ~generator=() => Screens.Modal.default,
     ()
   );
   Navigation.registerComponent(
-    ~screenId=screenId(`LightBox),
+    ~screenId=screenId(LightBox),
     ~generator=() => Screens.LightBox.default,
     ()
   );
@@ -28,16 +28,16 @@ let registerScreens = () => {
 let startApplication = () =>
   Navigation.(
     startSingleScreenApp(
-      ~screen=Screen.make(~screen=screenId(`Welcome), ()),
+      ~screen=Screen.make(~screen=screenId(Welcome), ()),
       ~drawer=
         Drawer.(
           config(
-            ~left=make(~screen=screenId(`Drawer), ()),
-            ~animationType=`parallax,
+            ~left=make(~screen=screenId(Drawer), ()),
+            ~animationType=Animation.Parallax,
             ()
           )
         ),
-      ~animationType=`slideDown,
+      ~animationType=Animation.SlideDown,
       ()
     )
   );
