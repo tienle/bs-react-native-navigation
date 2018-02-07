@@ -3,9 +3,6 @@ type screenId;
 type deepLink;
 
 /* TODO: */
-type navigatorStyle;
-
-/* TODO: */
 type navigatorButtons;
 
 type passProps = Js.t({.});
@@ -42,7 +39,7 @@ module Screen: {
     (
       ~screen: screenId,
       ~title: string=?,
-      ~navigatorStyle: navigatorStyle=?,
+      ~navigatorStyle: Navigator.Style.t=?,
       ~navigatorButtons: navigatorButtons=?,
       unit
     ) =>
@@ -85,14 +82,14 @@ module LightBox: {type style;};
 let registerComponent:
   (
     ~screenId: screenId,
-    ~generator: unit => ReasonReact.reactClass,
+    ~generator: unit => Utils.nativeScreen,
     ~store: 'a=?,
     ~provider: ReasonReact.reactClass=?,
     unit
   ) =>
   unit;
 
-let registerScreen: (screenId, unit => ReasonReact.reactClass) => unit;
+let registerScreen: (screenId, unit => Utils.nativeScreen) => unit;
 
 let startSingleScreenApp:
   (
@@ -110,7 +107,7 @@ let showModal:
     ~title: string=?,
     ~animationType: Animation.showModal=?,
     ~passProps: passProps=?,
-    ~navigatorStyle: navigatorStyle=?,
+    ~navigatorStyle: Navigator.Style.t=?,
     ~navigatorButtons: navigatorButtons=?,
     unit
   ) =>

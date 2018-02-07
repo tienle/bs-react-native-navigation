@@ -12,8 +12,6 @@ type dismissModalConfig;
 
 type handleDeepLinkConfig;
 
-type navigatorStyle;
-
 type navigatorButtons;
 
 type passProps = Js.t({.});
@@ -78,7 +76,7 @@ module Screen = {
     (
       ~screen: screenId,
       ~title: string=?,
-      ~navigatorStyle: navigatorStyle=?,
+      ~navigatorStyle: Navigator.Style.t=?,
       ~navigatorButtons: navigatorButtons=?,
       unit
     ) =>
@@ -157,7 +155,7 @@ module LightBox = {
 external _registerComponent :
   (
     screenId,
-    unit => ReasonReact.reactClass,
+    unit => Utils.nativeScreen,
     /* TODO */
     Js.Nullable.t('a),
     Js.Nullable.t(ReasonReact.reactClass)
@@ -176,8 +174,7 @@ let registerComponent = (~screenId, ~generator, ~store=?, ~provider=?, ()) =>
   );
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
-external registerScreen : (screenId, unit => ReasonReact.reactClass) => unit =
-  "";
+external registerScreen : (screenId, unit => Utils.nativeScreen) => unit = "";
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
 external _startSingleScreenApp : singleScreenAppConfig => unit =
@@ -218,7 +215,7 @@ external makeShowModalConfig :
     ~title: string=?,
     ~animationType: string=?,
     ~passProps: passProps=?,
-    ~navigatorStyle: navigatorStyle=?,
+    ~navigatorStyle: Navigator.Style.t=?,
     ~navigatorButtons: navigatorButtons=?,
     unit
   ) =>
