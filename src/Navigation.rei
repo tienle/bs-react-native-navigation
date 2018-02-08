@@ -79,15 +79,7 @@ module Drawer: {
 /* TODO: style */
 module LightBox: {type style;};
 
-let registerComponent:
-  (
-    ~screenId: screenId,
-    ~generator: unit => Utils.nativeScreen,
-    ~store: 'a=?,
-    ~provider: ReasonReact.reactClass=?,
-    unit
-  ) =>
-  unit;
+let registerComponent: (screenId, unit => Utils.nativeScreen) => unit;
 
 let registerScreen: (screenId, unit => Utils.nativeScreen) => unit;
 

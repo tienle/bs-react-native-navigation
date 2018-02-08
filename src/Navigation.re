@@ -152,26 +152,8 @@ module LightBox = {
 };
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
-external _registerComponent :
-  (
-    screenId,
-    unit => Utils.nativeScreen,
-    /* TODO */
-    Js.Nullable.t('a),
-    Js.Nullable.t(ReasonReact.reactClass)
-  ) =>
-  unit =
-  "registerComponent";
-
-let registerComponent = (~screenId, ~generator, ~store=?, ~provider=?, ()) =>
-  Js.Nullable.(
-    _registerComponent(
-      screenId,
-      generator,
-      from_opt(store),
-      from_opt(provider)
-    )
-  );
+external registerComponent : (screenId, unit => Utils.nativeScreen) => unit =
+  "";
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
 external registerScreen : (screenId, unit => Utils.nativeScreen) => unit = "";

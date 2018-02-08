@@ -36,11 +36,7 @@ let registerScreens = () =>
     (Drawer, Screens.Drawer.default),
   ]
   |> List.iter(((screen, component)) =>
-       Navigation.registerComponent(
-         ~screenId=screenId(screen),
-         ~generator=() => component,
-         ()
-       )
+       Navigation.registerComponent(screenId(screen), () => component)
      );
 
 let startApplication = () =>
