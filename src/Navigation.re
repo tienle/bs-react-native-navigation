@@ -25,12 +25,11 @@ module Animation = {
     | Fade
     | None
     | SlideDown;
-  let rootToJs = (animation: root) =>
-    switch animation {
+  let rootToJs =
+    fun
     | Fade => "fade"
     | None => "none"
-    | SlideDown => "slide-down"
-    };
+    | SlideDown => "slide-down";
   type showModal =
     | None
     | SlideUp;
