@@ -1,8 +1,8 @@
 module Style = {
   type t;
   type styleElement = (string, Js.Json.t);
-  external toStyle : Js.Dict.t(Js.Json.t) => t = "%identity";
-  let create = list => list |> Js.Dict.fromList |> toStyle;
+  external asStyle : Js.Dict.t(Js.Json.t) => t = "%identity";
+  let create = list => list |> Js.Dict.fromList |> asStyle;
   let toBool = (key, value) => (
     key,
     Encode.boolean(Js.Boolean.to_js_boolean(value))
