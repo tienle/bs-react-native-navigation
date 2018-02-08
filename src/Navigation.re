@@ -34,19 +34,17 @@ module Animation = {
   type showModal =
     | None
     | SlideUp;
-  let showModalToJs = (animation: showModal) =>
-    switch animation {
+  let showModalToJs =
+    fun
     | None => "none"
-    | SlideUp => "slide-up"
-    };
+    | SlideUp => "slide-up";
   type dismissModal =
     | None
     | SlideDown;
-  let dismissModalToJs = (animation: dismissModal) =>
-    switch animation {
+  let dismissModalToJs =
+    fun
     | None => "none"
-    | SlideDown => "slide-down"
-    };
+    | SlideDown => "slide-down";
   type drawer =
     | Door
     | Parallax
@@ -56,8 +54,8 @@ module Animation = {
     | Facebook
     | Luvocracy
     | Wunderlist;
-  let drawerToJs = (animation: drawer) =>
-    switch animation {
+  let drawerToJs =
+    fun
     | Door => "door"
     | Parallax => "parallax"
     | Slide => "slide"
@@ -65,8 +63,7 @@ module Animation = {
     | AirBnb => "airbnb"
     | Facebook => "facebook"
     | Luvocracy => "luvocracy"
-    | Wunderlist => "wunder-list"
-    };
+    | Wunderlist => "wunder-list";
 };
 
 module Screen = {
@@ -88,15 +85,13 @@ module Drawer = {
   type t;
   type style;
   type config;
-  [@bs.deriving jsConverter]
   type type_ =
     | MMDrawer
     | TheSideBar;
-  let type_ToJs = type_ =>
-    switch type_ {
+  let type_ToJs =
+    fun
     | MMDrawer => "MMDrawer"
-    | TheSideBar => "TheSideBar"
-    };
+    | TheSideBar => "TheSideBar";
   [@bs.obj]
   external make :
     (
