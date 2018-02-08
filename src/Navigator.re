@@ -15,7 +15,7 @@ module Style = {
   let navBarTextFontSize = toFloat("navBarTextFontSize");
   let navBarTextFontFamily = toString("navBarTextFontFamily");
   let navBarBackgroundColor = toString("navBarBackgroundColor");
-  /* TODO: toScreen! */
+  /* TODO: asScreen! */
   let navBarCustomView = toString("navBarBackgroundColor");
   type navBarComponentAlignment =
     | Center
