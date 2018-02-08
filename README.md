@@ -4,11 +4,11 @@
 
 BuckleScript bindings for [`react-native-navigation`](https://wix.github.io/react-native-navigation/) (from [@Wix](https://github.com/wix)).
 
-### Getting started
+## Getting started
 
 (work in progress)
 
-### Usage example
+## Usage example
 
 (work in progress)
 
@@ -113,6 +113,12 @@ Check the current status [here](STATUS.md).
 
 ![](assets/playground.gif)
 
-### Disclaimer
+## Disclaimer
 
 This is work in progress, use with caution.
+
+## License
+
+The MIT License.
+
+See [LICENSE](LICENSE)
