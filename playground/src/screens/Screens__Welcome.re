@@ -59,6 +59,12 @@ let make = (~navigator, _children) => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress=(
+          _event => Navigator.push(~navigator, ~screen=screenId(About), ())
+        )>
+        <Text> (stringToElement("Open About")) </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress=(
           _event => Navigation.showLightBox(~screen=screenId(LightBox), ())
         )>
         <Text> (stringToElement("Open LightBox")) </Text>

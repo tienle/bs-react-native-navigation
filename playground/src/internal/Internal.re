@@ -4,7 +4,8 @@ type screenId =
   | Drawer
   | Welcome
   | Modal
-  | LightBox;
+  | LightBox
+  | About;
 
 let screenId = screenId =>
   (
@@ -13,6 +14,7 @@ let screenId = screenId =>
     | Welcome => "screen.welcome"
     | Modal => "screen.modal"
     | LightBox => "screen.lightbox"
+    | About => "screen.about"
     }
   )
-  |> Navigation.asScreenId;
+  |> Core.asScreenId;

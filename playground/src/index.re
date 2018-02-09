@@ -5,6 +5,7 @@ open Internal;
 let registerScreens = () =>
   [
     (Welcome, Screens.Welcome.default),
+    (About, Screens.About.default),
     (Drawer, Screens.Drawer.default),
     (Modal, Screens.Modal.default),
     (LightBox, Screens.LightBox.default)
