@@ -44,3 +44,4 @@
 
   - [x] styling the navigator
   - [ ] adding buttons to the navigator
+  - [ ] `passProps`
