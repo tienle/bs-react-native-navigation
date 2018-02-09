@@ -44,11 +44,10 @@ module Style = {
   type statusBarTextColorScheme =
     | Dark
     | Light;
-  let _statusBarTextColorScheme = value =>
-    switch value {
+  let _statusBarTextColorScheme =
+    fun
     | Dark => "dark"
-    | Light => "light"
-    };
+    | Light => "light";
   let statusBarTextColorScheme = value =>
     toString("statusBarTextColorScheme", _statusBarTextColorScheme(value));
   let navBarSubtitleColor = toString("navBarSubtitleColor");
@@ -81,8 +80,8 @@ module Style = {
   /* TODO: screenBackgroundImageName */
   /* TODO: rootBackgroundImageName */
   let navBarButtonFontSize = toInt("navBarButtonFontSize");
-  let _fontWeight = value =>
-    switch value {
+  let _fontWeight =
+    fun
     | `Normal => "normal"
     | `Bold => "bold"
     | `_100 => "100"
@@ -93,8 +92,7 @@ module Style = {
     | `_600 => "600"
     | `_700 => "700"
     | `_800 => "800"
-    | `_900 => "900"
-    };
+    | `_900 => "900";
   let navBarButtonFontWeight = value =>
     toString("navBarButtonFontWeight", _fontWeight(value));
   let navBarLeftButtonFontSize = toFloat("navBarLeftButtonFontSize");
