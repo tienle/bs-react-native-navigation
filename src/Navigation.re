@@ -1,7 +1,3 @@
-type screenId;
-
-type deepLink;
-
 type singleScreenAppConfig;
 
 type showModalConfig;
@@ -12,145 +8,21 @@ type dismissModalConfig;
 
 type handleDeepLinkConfig;
 
-type navigatorButtons;
+module Animation = Navigation__Animation;
 
-type passProps = Js.t({.});
+module Screen = Navigation__Screen;
 
-external asScreenId : string => screenId = "%identity";
+module Drawer = Navigation__Drawer;
 
-external asDeepLink : string => deepLink = "%identity";
-
-module Animation = {
-  type root =
-    | Fade
-    | None
-    | SlideDown;
-  let rootToJs =
-    fun
-    | Fade => "fade"
-    | None => "none"
-    | SlideDown => "slide-down";
-  type showModal =
-    | None
-    | SlideUp;
-  let showModalToJs =
-    fun
-    | None => "none"
-    | SlideUp => "slide-up";
-  type dismissModal =
-    | None
-    | SlideDown;
-  let dismissModalToJs =
-    fun
-    | None => "none"
-    | SlideDown => "slide-down";
-  type drawer =
-    | Door
-    | Parallax
-    | Slide
-    | SlideAndScale
-    | AirBnb
-    | Facebook
-    | Luvocracy
-    | Wunderlist;
-  let drawerToJs =
-    fun
-    | Door => "door"
-    | Parallax => "parallax"
-    | Slide => "slide"
-    | SlideAndScale => "slide-and-scale"
-    | AirBnb => "airbnb"
-    | Facebook => "facebook"
-    | Luvocracy => "luvocracy"
-    | Wunderlist => "wunder-list";
-};
-
-module Screen = {
-  type t;
-  [@bs.obj]
-  external make :
-    (
-      ~screen: screenId,
-      ~title: string=?,
-      ~navigatorStyle: Navigator.Style.t=?,
-      ~navigatorButtons: navigatorButtons=?,
-      unit
-    ) =>
-    t =
-    "";
-};
-
-module Drawer = {
-  type t;
-  type style;
-  type config;
-  type type_ =
-    | MMDrawer
-    | TheSideBar;
-  let type_ToJs =
-    fun
-    | MMDrawer => "MMDrawer"
-    | TheSideBar => "TheSideBar";
-  [@bs.obj]
-  external make :
-    (
-      ~screen: screenId,
-      ~disableOpenGesture: Js.boolean=?,
-      ~fixedWidth: float=?,
-      ~passProps: passProps=?,
-      unit
-    ) =>
-    t =
-    "";
-  [@bs.obj]
-  external _config :
-    (
-      ~left: t=?,
-      ~right: t=?,
-      ~style: style=?,
-      ~_type: string=?,
-      ~animationType: string=?,
-      ~disableOpenGesture: Js.boolean=?,
-      unit
-    ) =>
-    config =
-    "";
-  let config =
-      (
-        ~left=?,
-        ~right=?,
-        ~style=?,
-        ~_type=?,
-        ~animationType=?,
-        ~disableOpenGesture=?,
-        ()
-      ) =>
-    _config(
-      ~left?,
-      ~right?,
-      ~style?,
-      ~_type=?Js.Option.map([@bs] (t => type_ToJs(t)), _type),
-      ~animationType=?
-        Js.Option.map([@bs] (t => Animation.drawerToJs(t)), animationType),
-      ~disableOpenGesture=?
-        Js.Option.map(
-          [@bs] (t => Js.Boolean.to_js_boolean(t)),
-          disableOpenGesture
-        ),
-      ()
-    );
-};
-
-module LightBox = {
-  type style;
-};
+module LightBox = Navigation__LightBox;
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
-external registerComponent : (screenId, unit => Utils.nativeScreen) => unit =
+external registerComponent : (Core.screenId, unit => Core.nativeScreen) => unit =
   "";
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
-external registerScreen : (screenId, unit => Utils.nativeScreen) => unit = "";
+external registerScreen : (Core.screenId, unit => Core.nativeScreen) => unit =
+  "";
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
 external _startSingleScreenApp : singleScreenAppConfig => unit =
@@ -162,7 +34,7 @@ external makeSingleScreenAppConfig :
     ~screen: Screen.t,
     ~drawer: Drawer.config=?,
     ~animationType: string=?,
-    ~passProps: passProps=?,
+    ~passProps: Js.t({.})=?,
     unit
   ) =>
   singleScreenAppConfig =
@@ -187,12 +59,12 @@ external _showModal : showModalConfig => unit = "showModal";
 [@bs.obj]
 external makeShowModalConfig :
   (
-    ~screen: screenId,
+    ~screen: Core.screenId,
     ~title: string=?,
     ~animationType: string=?,
-    ~passProps: passProps=?,
-    ~navigatorStyle: Navigator.Style.t=?,
-    ~navigatorButtons: navigatorButtons=?,
+    ~passProps: Js.t({.})=?,
+    ~navigatorStyle: Navigator__Style.t=?,
+    ~navigatorButtons: Navigator__Buttons.t=?,
     unit
   ) =>
   showModalConfig =
@@ -254,8 +126,8 @@ external _showLightBox : showLightBoxConfig => unit = "showLightBox";
 [@bs.obj]
 external makeShowLightBoxConfig :
   (
-    ~screen: screenId,
-    ~passProps: passProps=?,
+    ~screen: Core.screenId,
+    ~passProps: Js.t({.})=?,
     ~style: LightBox.style=?,
     unit
   ) =>
@@ -270,7 +142,7 @@ external _handleDeepLink : handleDeepLinkConfig => unit = "handleDeepLink";
 
 [@bs.obj]
 external makeHandleDeepLinkConfig :
-  (~link: deepLink, ~payload: Js.t({.})=?, unit) => handleDeepLinkConfig =
+  (~link: Core.deepLink, ~payload: Js.t({.})=?, unit) => handleDeepLinkConfig =
   "";
 
 let handleDeepLink = (~link, ~payload=?, ()) =>
