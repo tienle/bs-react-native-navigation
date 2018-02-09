@@ -17,7 +17,7 @@
 ### Navigator (`Screen API`)
 
   - [ ] `push`
-  - [ ] `pop`
+  - [x] `pop`
   - [ ] `popToRoot`
   - [ ] `resetTo`
   - [ ] `showModal`
