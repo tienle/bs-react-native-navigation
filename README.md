@@ -28,7 +28,7 @@ let screenId = screenId =>
     | Welcome => "screen.welcome"
     }
   )
-  |> Navigation.asScreenId;
+  |> Core.asScreenId;
 
 let registerScreens = () =>
   [
