@@ -1,8 +1,8 @@
-type pop =
+type common =
   | Fade
   | SlideHorizontal;
 
-let popToJs =
+let commonToJs =
   fun
   | Fade => "fade"
   | SlideHorizontal => "slide-horizontal";
