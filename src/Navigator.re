@@ -27,13 +27,17 @@ external makePopConfig :
 let push = (~navigator, ~screen, ~title=?, ()) =>
   navigator##push(makePushConfig(~screen, ~title?, ()));
 
-let pop = (~navigator, ~animated=?, ~animationType=?, ()) =>
-  navigator##pop(
-    makePopConfig(
-      ~animationType=?
-        Js.Option.map([@bs] (t => Animation.popToJs(t)), animationType),
-      ~animated=?
-        Js.Option.map([@bs] (t => Js.Boolean.to_js_boolean(t)), animated),
-      ()
-    )
+let commonPopConfig = (~animationType, ~animated) =>
+  makePopConfig(
+    ~animationType=?
+      Js.Option.map([@bs] (t => Animation.popToJs(t)), animationType),
+    ~animated=?
+      Js.Option.map([@bs] (t => Js.Boolean.to_js_boolean(t)), animated),
+    ()
   );
+
+let pop = (~navigator, ~animated=?, ~animationType=?, ()) =>
+  navigator##pop(commonPopConfig(~animated, ~animationType));
+
+let popToRoot = (~navigator, ~animated=?, ~animationType=?, ()) =>
+  navigator##popToRoot(commonPopConfig(~animated, ~animationType));
