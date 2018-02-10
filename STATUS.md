@@ -19,7 +19,7 @@
   - [ ] `push`
   - [x] `pop`
   - [x] `popToRoot`
-  - [ ] `resetTo`
+  - [x] `resetTo`
   - [ ] `showModal`
   - [ ] `dismissModal`
   - [ ] `dismissAllModals`
