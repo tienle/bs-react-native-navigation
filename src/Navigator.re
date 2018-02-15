@@ -4,12 +4,15 @@ type popConfig;
 
 type resetToConfig;
 
+type showModalConfig;
+
 type t = {
   .
   "push": pushConfig => unit,
   "pop": popConfig => unit,
   "popToRoot": popConfig => unit,
-  "resetTo": resetToConfig => unit
+  "resetTo": resetToConfig => unit,
+  "showModal": showModalConfig => unit
 };
 
 module Style = Navigator__Style;
@@ -41,6 +44,18 @@ external makeResetToConfig :
     unit
   ) =>
   popConfig =
+  "";
+
+[@bs.obj]
+external makeShowModalConfig :
+  (
+    ~screen: Core.screenId,
+    ~title: string=?,
+    ~passProps: Js.t({.})=?,
+    ~navigatorStyle: Navigator__Style.t=?,
+    ~animationType: string=?
+  ) =>
+  showModalConfig =
   "";
 
 let push = (~navigator, ~screen, ~title=?, ()) =>
@@ -85,5 +100,25 @@ let resetTo =
       ~navigatorStyle?,
       ~navigatorButtons?,
       ()
+    )
+  );
+
+let showModal =
+    (
+      ~navigator,
+      ~screen,
+      ~title=?,
+      ~passProps=?,
+      ~animationType=?,
+      ~navigatorStyle=?
+    ) =>
+  navigator##showModal(
+    makeShowModalConfig(
+      ~screen,
+      ~title?,
+      ~animationType=?
+        Js.Option.map([@bs] (t => Animation.commonToJs(t)), animationType),
+      ~passProps?,
+      ~navigatorStyle?
     )
   );
