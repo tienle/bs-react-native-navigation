@@ -20,7 +20,7 @@
   - [x] `pop`
   - [x] `popToRoot`
   - [x] `resetTo`
-  - [ ] `showModal`
+  - [x] `showModal`
   - [ ] `dismissModal`
   - [ ] `dismissAllModals`
   - [ ] `showLightBox`
