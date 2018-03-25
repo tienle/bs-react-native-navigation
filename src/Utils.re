@@ -6,5 +6,5 @@ let nativeScreen = (~component, ~make) =>
 
 let setNavigatorStyle =
     (~nativeScreen: Core.nativeScreen, ~navigatorStyle: Navigator.Style.t) => Obj.magic(
-                                                                    nativeScreen
+                                                                    nativeScreen,
                                                                     )##navigatorStyle#=navigatorStyle;

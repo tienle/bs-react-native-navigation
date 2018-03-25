@@ -47,10 +47,10 @@ let startSingleScreenApp =
       ~screen,
       ~drawer?,
       ~animationType=?
-        Js.Option.map([@bs] (t => Animation.rootToJs(t)), animationType),
+        Js.Option.map((. t) => Animation.rootToJs(t), animationType),
       ~passProps?,
-      ()
-    )
+      (),
+    ),
   );
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
@@ -78,19 +78,19 @@ let showModal =
       ~passProps=?,
       ~navigatorStyle=?,
       ~navigatorButtons=?,
-      ()
+      (),
     ) =>
   _showModal(
     makeShowModalConfig(
       ~screen,
       ~title?,
       ~animationType=?
-        Js.Option.map([@bs] (t => Animation.showModalToJs(t)), animationType),
+        Js.Option.map((. t) => Animation.showModalToJs(t), animationType),
       ~passProps?,
       ~navigatorStyle?,
       ~navigatorButtons?,
-      ()
-    )
+      (),
+    ),
   );
 
 [@bs.module "react-native-navigation"] [@bs.scope "Navigation"]
@@ -107,8 +107,8 @@ external makeDismissModalConfig :
 let commonDismissModalConfig = animationType =>
   makeDismissModalConfig(
     ~animationType=?
-      Js.Option.map([@bs] (t => Animation.dismissModalToJs(t)), animationType),
-    ()
+      Js.Option.map((. t) => Animation.dismissModalToJs(t), animationType),
+    (),
   );
 
 let dismissModal = (~animationType=?, ()) =>

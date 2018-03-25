@@ -8,7 +8,7 @@ let create = list => list |> Js.Dict.fromList |> asStyle;
 
 let toBool = (key, value) => (
   key,
-  Encode.boolean(Js.Boolean.to_js_boolean(value))
+  Encode.boolean(Js.Boolean.to_js_boolean(value)),
 );
 
 let toString = (key, value) => (key, Encode.string(value));
@@ -37,10 +37,10 @@ type navBarComponentAlignment =
 let navBarComponentAlignment = value =>
   toString(
     "navBarComponentAlignment",
-    switch value {
+    switch (value) {
     | Center => "center"
     | Fill => "fill"
-    }
+    },
   );
 
 let navBarCustomViewInitialProps = toObject("navBarCustomViewInitialProps");
@@ -97,11 +97,11 @@ type orientation =
 let orientation = value =>
   toString(
     "orientation",
-    switch value {
+    switch (value) {
     | Auto => "auto"
     | Portrait => "portrait"
     | Landscape => "landscape"
-    }
+    },
   );
 
 let disabledButtonColor = toString("disabledButtonColor");
@@ -109,7 +109,7 @@ let disabledButtonColor = toString("disabledButtonColor");
 let statusBarTextColorSchemeSingleScreen = value =>
   toString(
     "statusBarTextColorSchemeSingleScreen",
-    _statusBarTextColorScheme(value)
+    _statusBarTextColorScheme(value),
   );
 
 let statusBarHideWithNavBar = toBool("statusBarHideWithNavBar");
@@ -174,13 +174,13 @@ type modalPresentationType =
 let modalPresentationStyle = value =>
   toString(
     "modalPresentationStyle",
-    switch value {
+    switch (value) {
     | FormSheet => "formSheet"
     | PageSheet => "pageSheet"
     | OverFullScreen => "overFullScreen"
     | OverCurrentContext => "overCurrentContext"
     | FullScreen => "fullScreen"
-    }
+    },
   );
 
 let largeTitle = toBool("largeTitle");

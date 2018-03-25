@@ -12,7 +12,7 @@ type t = {
   "pop": popConfig => unit,
   "popToRoot": popConfig => unit,
   "resetTo": resetToConfig => unit,
-  "showModal": showModalConfig => unit
+  "showModal": showModalConfig => unit,
 };
 
 module Style = Navigator__Style;
@@ -64,10 +64,10 @@ let push = (~navigator, ~screen, ~title=?, ()) =>
 let commonPopConfig = (~animationType, ~animated) =>
   makePopConfig(
     ~animationType=?
-      Js.Option.map([@bs] (t => Animation.commonToJs(t)), animationType),
+      Js.Option.map((. t) => Animation.commonToJs(t), animationType),
     ~animated=?
-      Js.Option.map([@bs] (t => Js.Boolean.to_js_boolean(t)), animated),
-    ()
+      Js.Option.map((. t) => Js.Boolean.to_js_boolean(t), animated),
+    (),
   );
 
 let pop = (~navigator, ~animated=?, ~animationType=?, ()) =>
@@ -86,21 +86,21 @@ let resetTo =
       ~animationType=?,
       ~navigatorStyle=?,
       ~navigatorButtons=?,
-      ()
+      (),
     ) =>
   navigator##resetTo(
     makeResetToConfig(
       ~screen,
       ~title?,
       ~animationType=?
-        Js.Option.map([@bs] (t => Animation.commonToJs(t)), animationType),
+        Js.Option.map((. t) => Animation.commonToJs(t), animationType),
       ~animated=?
-        Js.Option.map([@bs] (t => Js.Boolean.to_js_boolean(t)), animated),
+        Js.Option.map((. t) => Js.Boolean.to_js_boolean(t), animated),
       ~passProps?,
       ~navigatorStyle?,
       ~navigatorButtons?,
-      ()
-    )
+      (),
+    ),
   );
 
 let showModal =
@@ -110,15 +110,15 @@ let showModal =
       ~title=?,
       ~passProps=?,
       ~animationType=?,
-      ~navigatorStyle=?
+      ~navigatorStyle=?,
     ) =>
   navigator##showModal(
     makeShowModalConfig(
       ~screen,
       ~title?,
       ~animationType=?
-        Js.Option.map([@bs] (t => Animation.commonToJs(t)), animationType),
+        Js.Option.map((. t) => Animation.commonToJs(t), animationType),
       ~passProps?,
-      ~navigatorStyle?
-    )
+      ~navigatorStyle?,
+    ),
   );

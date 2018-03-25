@@ -47,22 +47,22 @@ let config =
       ~_type=?,
       ~animationType=?,
       ~disableOpenGesture=?,
-      ()
+      (),
     ) =>
   _config(
     ~left?,
     ~right?,
     ~style?,
-    ~_type=?Js.Option.map([@bs] (t => type_ToJs(t)), _type),
+    ~_type=?Js.Option.map((. t) => type_ToJs(t), _type),
     ~animationType=?
       Js.Option.map(
-        [@bs] (t => Navigation__Animation.drawerToJs(t)),
-        animationType
+        (. t) => Navigation__Animation.drawerToJs(t),
+        animationType,
       ),
     ~disableOpenGesture=?
       Js.Option.map(
-        [@bs] (t => Js.Boolean.to_js_boolean(t)),
-        disableOpenGesture
+        (. t) => Js.Boolean.to_js_boolean(t),
+        disableOpenGesture,
       ),
-    ()
+    (),
   );
