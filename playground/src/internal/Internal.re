@@ -9,7 +9,7 @@ type screenId =
 
 let screenId = screenId =>
   (
-    switch screenId {
+    switch (screenId) {
     | Drawer => "screen.drawer"
     | Welcome => "screen.welcome"
     | Modal => "screen.modal"

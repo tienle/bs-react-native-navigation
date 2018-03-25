@@ -9,16 +9,17 @@ let styles =
     Style.(
       {
         "container": style([flex(1.), backgroundColor("#5A35F9")]),
-        "inner": style([flex(1.), alignItems(Center), justifyContent(Center)]),
+        "inner":
+          style([flex(1.), alignItems(Center), justifyContent(Center)]),
         "text":
           style([
             color("#fff"),
             fontSize(Float(32.)),
             marginBottom(Pt(20.)),
-            fontWeight(`Bold)
-          ])
+            fontWeight(`Bold),
+          ]),
       }
-    )
+    ),
   );
 
 let component = statelessComponent("Drawer");
@@ -30,7 +31,7 @@ let make = (~navigator, _children) => {
       <View style=styles##inner>
         <Text style=styles##text> (stringToElement("Drawer!")) </Text>
       </View>
-    </View>
+    </View>,
 };
 
 let default = Utils.nativeScreen(~component, ~make);

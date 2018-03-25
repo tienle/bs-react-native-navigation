@@ -20,17 +20,17 @@ let styles =
             flex(1.),
             backgroundColor("#2579FB"),
             alignItems(Center),
-            justifyContent(Center)
+            justifyContent(Center),
           ]),
         "text":
           style([
             color("#fff"),
             fontSize(Float(32.)),
             marginBottom(Pt(20.)),
-            fontWeight(`Bold)
-          ])
+            fontWeight(`Bold),
+          ]),
       }
-    )
+    ),
   );
 
 let component = reducerComponent("Welcome");
@@ -47,7 +47,7 @@ let make = (~navigator, _children) => {
   ...component,
   initialState: () => {id: ""},
   reducer: (action, _state) =>
-    switch action {
+    switch (action) {
     | UpdateScreenId(id) => Update({id: id})
     },
   render: self =>
@@ -73,7 +73,7 @@ let make = (~navigator, _children) => {
         <Text> (stringToElement("Get currently visible `screenId`")) </Text>
       </TouchableOpacity>
       <Text> (stringToElement(self.state.id)) </Text>
-    </View>
+    </View>,
 };
 
 let default = Utils.nativeScreen(~component, ~make);
@@ -85,7 +85,7 @@ Utils.setNavigatorStyle(
       create([
         navBarTextColor("#fff"),
         navBarNoBorder(true),
-        navBarBackgroundColor("#2575E6")
+        navBarBackgroundColor("#2575E6"),
       ])
-    )
+    ),
 );

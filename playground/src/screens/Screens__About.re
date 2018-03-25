@@ -13,17 +13,17 @@ let styles =
             flex(1.),
             backgroundColor("#F5F5F5"),
             alignItems(Center),
-            justifyContent(Center)
+            justifyContent(Center),
           ]),
         "text":
           style([
             color("#1144E6"),
             fontSize(Float(32.)),
             marginBottom(Pt(20.)),
-            fontWeight(`Bold)
-          ])
+            fontWeight(`Bold),
+          ]),
       }
-    )
+    ),
   );
 
 let component = statelessComponent("Modal");
@@ -36,12 +36,12 @@ let make = (~navigator, _children) => {
       <TouchableOpacity onPress=(_event => Navigator.pop(~navigator, ()))>
         <Text> (stringToElement("Go back")) </Text>
       </TouchableOpacity>
-    </View>
+    </View>,
 };
 
 let default = Utils.nativeScreen(~component, ~make);
 
 Utils.setNavigatorStyle(
   ~nativeScreen=default,
-  ~navigatorStyle=Navigator.Style.(create([navBarHidden(true)]))
+  ~navigatorStyle=Navigator.Style.(create([navBarHidden(true)])),
 );

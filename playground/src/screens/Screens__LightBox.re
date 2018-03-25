@@ -14,17 +14,17 @@ let styles =
             height(Pt(400.)),
             backgroundColor("#FF3E9D"),
             alignItems(Center),
-            justifyContent(Center)
+            justifyContent(Center),
           ]),
         "text":
           style([
             color("#fff"),
             fontSize(Float(32.)),
             marginBottom(Pt(20.)),
-            fontWeight(`Bold)
-          ])
+            fontWeight(`Bold),
+          ]),
       }
-    )
+    ),
   );
 
 let component = statelessComponent("LightBox");
@@ -37,7 +37,7 @@ let make = (~navigator, _children) => {
       <TouchableOpacity onPress=(_event => Navigation.dismissLightBox())>
         <Text> (stringToElement("Dismiss LightBox")) </Text>
       </TouchableOpacity>
-    </View>
+    </View>,
 };
 
 let default = Utils.nativeScreen(~component, ~make);
