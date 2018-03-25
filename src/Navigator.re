@@ -136,7 +136,7 @@ let commonDismissModal = (~animationType, ()) =>
       Js.Option.map((. t) => Animation.dismissModalToJs(t), animationType),
   );
 
-let dismisModal = (~navigator, ~animationType=?) =>
+let dismissModal = (~navigator, ~animationType=?) =>
   navigator##dismissModal(commonDismissModal(~animationType));
 
 let dismissAllModals = (~navigator, ~animationType=?) =>
