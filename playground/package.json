@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "react": "16.2.0",
-    "react-native": "0.52.2",
+    "react-native": "0.54.2",
     "react-native-navigation": "APSL/react-native-navigation#rn52_android"
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-react-native": "4.0.0"
   }
 }

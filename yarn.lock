@@ -6,13 +6,13 @@ asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
 
-bs-platform@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-2.1.0.tgz#63560ff8f7142c9c0631559df1c35590b9f6d8b2"
+bs-platform@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-2.2.3.tgz#d905ae10a5f3621e6a739041dfa0b58483a2174f"
 
-bs-react-native@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/bs-react-native/-/bs-react-native-0.5.0.tgz#f3b147905009fe45edb302cd13d969bb3f52d9aa"
+bs-react-native@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/bs-react-native/-/bs-react-native-0.6.0.tgz#d0ad42d8bc57c92074df59de3fd49c4407203b11"
 
 core-js@^1.0.0:
   version "1.2.7"
@@ -104,9 +104,9 @@ prop-types@^15.6.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-reason-react@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.3.2.tgz#14574b619bd9bf2b6057d681867a5dfa69f2360f"
+reason-react@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/reason-react/-/reason-react-0.3.4.tgz#afec4073ec0ea8122833f52b7e77219ef8ab8467"
   dependencies:
     react ">=15.0.0 || >=16.0.0"
     react-dom ">=15.0.0 || >=16.0.0"
