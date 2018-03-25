@@ -6,6 +6,8 @@ type resetToConfig;
 
 type showModalConfig;
 
+type dismissModalConfig;
+
 type t = {
   .
   "push": pushConfig => unit,
@@ -44,6 +46,11 @@ external makeResetToConfig :
     unit
   ) =>
   popConfig =
+  "";
+
+[@bs.obj]
+external makeDismissModalConfig :
+  (~animationType: string=?, unit) => dismissModalConfig =
   "";
 
 [@bs.obj]
@@ -122,3 +129,15 @@ let showModal =
       ~navigatorStyle?,
     ),
   );
+
+let commonDismissModal = (~animationType=?, ()) =>
+  makeDismissModalConfig(
+    ~animationType=?
+      Js.Option.map((. t) => Animation.dismissModalToJs(t), animationType),
+  );
+
+let dismisModal = (~navigator, ~animationType=?) =>
+  navigator##dismissModal(commonDismissModal(~animationType));
+
+let dismissAllModals = (~navigator, ~animationType=?) =>
+  navigator##dismissAllModals(commonDismissModal(~animationType));

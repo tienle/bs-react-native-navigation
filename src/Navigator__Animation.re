@@ -15,3 +15,12 @@ let showModalToJs =
   fun
   | None => "none"
   | SlideUp => "slide-up";
+
+type dismissModal =
+  | None
+  | SlideDown;
+
+let dismissModalToJs =
+  fun
+  | None => "none"
+  | SlideDown => "slide-down";
