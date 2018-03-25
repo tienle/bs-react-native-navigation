@@ -21,8 +21,8 @@
   - [x] `popToRoot`
   - [x] `resetTo`
   - [x] `showModal`
-  - [ ] `dismissModal`
-  - [ ] `dismissAllModals`
+  - [x] `dismissModal`
+  - [x] `dismissAllModals`
   - [ ] `showLightBox`
   - [ ] `showInAppNotifications`
   - [ ] `handleDeepLink`
