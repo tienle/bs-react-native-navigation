@@ -130,7 +130,7 @@ let showModal =
     ),
   );
 
-let commonDismissModal = (~animationType=?, ()) =>
+let commonDismissModal = (~animationType, ()) =>
   makeDismissModalConfig(
     ~animationType=?
       Js.Option.map((. t) => Animation.dismissModalToJs(t), animationType),
