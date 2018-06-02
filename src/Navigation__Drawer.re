@@ -17,7 +17,7 @@ let type_ToJs =
 external make :
   (
     ~screen: Core.screenId,
-    ~disableOpenGesture: Js.boolean=?,
+    ~disableOpenGesture: bool=?,
     ~fixedWidth: float=?,
     ~passProps: Js.t({.})=?,
     unit
@@ -33,7 +33,7 @@ external _config :
     ~style: style=?,
     ~_type: string=?,
     ~animationType: string=?,
-    ~disableOpenGesture: Js.boolean=?,
+    ~disableOpenGesture: bool=?,
     unit
   ) =>
   config =
