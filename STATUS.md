@@ -29,7 +29,7 @@
   - [ ] `setButtons`
   - [ ] `setTitle`
   - [ ] `setSubTitle`
-  - [ ] `toggleDrawer`
+  - [x] `toggleDrawer`
   - [ ] `setDrawerEnabled`
   - [ ] `toggleTabs`
   - [ ] `setTabBadge`

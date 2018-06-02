@@ -1,3 +1,11 @@
+module Style = Navigator__Style;
+
+module Animation = Navigator__Animation;
+
+module Buttons = Navigator__Buttons;
+
+module Drawer = Navigation__Drawer;
+
 type pushConfig;
 
 type popConfig;
@@ -17,11 +25,13 @@ type t = {
   "showModal": showModalConfig => unit,
 };
 
-module Style = Navigator__Style;
-
-module Animation = Navigator__Animation;
-
-module Buttons = Navigator__Buttons;
+[@bs.deriving abstract]
+type toggleDrawerConfig = {
+  side: string,
+  animated: bool,
+  [@bs.optional] [@bs.as "to"]
+  to_: string,
+};
 
 [@bs.obj]
 external makePushConfig :
@@ -141,3 +151,14 @@ let dismissModal = (~navigator, ~animationType=?) =>
 
 let dismissAllModals = (~navigator, ~animationType=?) =>
   navigator##dismissAllModals(commonDismissModal(~animationType));
+
+let toggleDrawer =
+    (~navigator, ~side: Drawer.side, ~animated, ~to_: option(Drawer.state)=?, ()) =>
+  navigator##toggleDrawer(
+    toggleDrawerConfig(
+      ~side=Drawer.sideToJs(side),
+      ~animated,
+      ~to_=?Belt.Option.map(to_, Drawer.stateToJs),
+      (),
+    ),
+  );

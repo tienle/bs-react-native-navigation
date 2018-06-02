@@ -8,10 +8,24 @@ type type_ =
   | MMDrawer
   | TheSideBar;
 
+type side = [ | `Left | `Right];
+
+type state = [ | `Open | `Closed];
+
 let type_ToJs =
   fun
   | MMDrawer => "MMDrawer"
   | TheSideBar => "TheSideBar";
+
+let sideToJs =
+  fun
+  | `Left => "left"
+  | `Right => "Right";
+
+let stateToJs =
+  fun
+  | `Open => "open"
+  | `Closed => "closed";
 
 [@bs.obj]
 external make :
