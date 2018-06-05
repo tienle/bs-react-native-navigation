@@ -30,7 +30,7 @@ external makePushConfig :
 
 [@bs.obj]
 external makePopConfig :
-  (~animated: Js.boolean=?, ~animationType: string=?, unit) => popConfig =
+  (~animated: bool=?, ~animationType: string=?, unit) => popConfig =
   "";
 
 [@bs.obj]
@@ -39,7 +39,7 @@ external makeResetToConfig :
     ~screen: Core.screenId,
     ~title: string=?,
     ~passProps: Js.t({.})=?,
-    ~animated: Js.boolean=?,
+    ~animated: bool=?,
     ~animationType: string=?,
     ~navigatorStyle: Navigator__Style.t=?,
     ~navigatorButtons: Navigator__Buttons.t=?,
